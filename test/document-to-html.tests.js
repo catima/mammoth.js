@@ -569,7 +569,7 @@ test('footnote reference is converted to superscript intra-page link', function(
         idPrefix: "doc-42-"
     });
     return converter.convertToHtml(footnoteReference).then(function(result) {
-        assert.equal(result.value, '<sup><a href="#doc-42-footnote-4" id="doc-42-footnote-ref-4">[1]</a></sup>');
+        assert.equal(result.value, '<sup class="note-reference footnote"><a href="#doc-42-footnote-4" id="doc-42-footnote-ref-4">[1]</a></sup>');
     });
 });
 
@@ -598,8 +598,8 @@ test('footnotes are included after the main body', function() {
         idPrefix: "doc-42-"
     });
     return converter.convertToHtml(document).then(function(result) {
-        var expectedOutput = '<p>Knock knock<sup><a href="#doc-42-footnote-4" id="doc-42-footnote-ref-4">[1]</a></sup></p>' +
-            '<ol><li id="doc-42-footnote-4"><p>Who\'s there? <a href="#doc-42-footnote-ref-4">↑</a></p></li></ol>';
+        var expectedOutput = '<p>Knock knock<sup class="note-reference footnote"><a href="#doc-42-footnote-4" id="doc-42-footnote-ref-4">[1]</a></sup></p>' +
+            '<ol class="notes"><li id="doc-42-footnote-4" class="note footnote"><p>Who\'s there? <a href="#doc-42-footnote-ref-4">↑</a></p></li></ol>';
         assert.equal(result.value, expectedOutput);
     });
 });

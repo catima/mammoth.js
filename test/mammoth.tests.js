@@ -278,10 +278,10 @@ test('footnotes are appended to text', function() {
     };
     return mammoth.convertToHtml({path: docxPath}, options).then(function(result) {
         var expectedOutput = '<p>Ouch' +
-            '<sup><a href="#doc-42-footnote-1" id="doc-42-footnote-ref-1">[1]</a></sup>.' +
-            '<sup><a href="#doc-42-footnote-2" id="doc-42-footnote-ref-2">[2]</a></sup></p>' +
-            '<ol><li id="doc-42-footnote-1"><p> A tachyon walks into a bar. <a href="#doc-42-footnote-ref-1">↑</a></p></li>' +
-            '<li id="doc-42-footnote-2"><p> Fin. <a href="#doc-42-footnote-ref-2">↑</a></p></li></ol>';
+            '<sup class="note-reference footnote"><a href="#doc-42-footnote-1" id="doc-42-footnote-ref-1">[1]</a></sup>.' +
+            '<sup class="note-reference footnote"><a href="#doc-42-footnote-2" id="doc-42-footnote-ref-2">[2]</a></sup></p>' +
+            '<ol class="notes"><li id="doc-42-footnote-1" class="note footnote"><p> A tachyon walks into a bar. <a href="#doc-42-footnote-ref-1">↑</a></p></li>' +
+            '<li id="doc-42-footnote-2" class="note footnote"><p> Fin. <a href="#doc-42-footnote-ref-2">↑</a></p></li></ol>';
         assert.equal(result.value, expectedOutput);
         assert.deepEqual(result.messages, []);
     });
@@ -294,10 +294,10 @@ test('endnotes are appended to text', function() {
     };
     return mammoth.convertToHtml({path: docxPath}, options).then(function(result) {
         var expectedOutput = '<p>Ouch' +
-            '<sup><a href="#doc-42-endnote-2" id="doc-42-endnote-ref-2">[1]</a></sup>.' +
-            '<sup><a href="#doc-42-endnote-3" id="doc-42-endnote-ref-3">[2]</a></sup></p>' +
-            '<ol><li id="doc-42-endnote-2"><p> A tachyon walks into a bar. <a href="#doc-42-endnote-ref-2">↑</a></p></li>' +
-            '<li id="doc-42-endnote-3"><p> Fin. <a href="#doc-42-endnote-ref-3">↑</a></p></li></ol>';
+            '<sup class="note-reference endnote"><a href="#doc-42-endnote-2" id="doc-42-endnote-ref-2">[1]</a></sup>.' +
+            '<sup class="note-reference endnote"><a href="#doc-42-endnote-3" id="doc-42-endnote-ref-3">[2]</a></sup></p>' +
+            '<ol class="notes"><li id="doc-42-endnote-2" class="note endnote"><p> A tachyon walks into a bar. <a href="#doc-42-endnote-ref-2">↑</a></p></li>' +
+            '<li id="doc-42-endnote-3" class="note endnote"><p> Fin. <a href="#doc-42-endnote-ref-3">↑</a></p></li></ol>';
         assert.equal(result.value, expectedOutput);
         assert.deepEqual(result.messages, []);
     });
@@ -310,8 +310,8 @@ test('relationships are handled properly in footnotes', function() {
     };
     return mammoth.convertToHtml({path: docxPath}, options).then(function(result) {
         var expectedOutput =
-            '<p><sup><a href="#doc-42-footnote-1" id="doc-42-footnote-ref-1">[1]</a></sup></p>' +
-            '<ol><li id="doc-42-footnote-1"><p> <a href="http://www.example.com">Example</a> <a href="#doc-42-footnote-ref-1">↑</a></p></li></ol>';
+            '<p><sup class="note-reference footnote"><a href="#doc-42-footnote-1" id="doc-42-footnote-ref-1">[1]</a></sup></p>' +
+            '<ol class="notes"><li id="doc-42-footnote-1" class="note footnote"><p> <a href="http://www.example.com">Example</a> <a href="#doc-42-footnote-ref-1">↑</a></p></li></ol>';
         assert.equal(result.value, expectedOutput);
         assert.deepEqual(result.messages, []);
     });
